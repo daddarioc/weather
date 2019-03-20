@@ -1,6 +1,7 @@
 import React from'react';
 import ReactDOM from 'react-dom';
 import SeasonDisplay from './SeasonDisplay';
+import Spinner from './Spinner';
 
 class App extends React.Component {
   // this is functionally equivalent to constructor initilization
@@ -36,9 +37,9 @@ class App extends React.Component {
     if (this.state.errorMessage && !this.state.lat) {
       return <div>Error: {this.state.errorMessage}</div>
     } else if (!this.state.errorMessage && this.state.lat) {
-      return <div>Latitude: {this.state.lat}</div>
+      return <SeasonDisplay latitude={ this.state.lat }/>
     } else {
-      return <div>loading...</div>
+      return <Spinner />;
     }
   }
 }
