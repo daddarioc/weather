@@ -3,11 +3,11 @@ import ReactDOM from 'react-dom';
 import SeasonDisplay from './SeasonDisplay';
 
 class App extends React.Component {
-  constructor(props) {
-    super(props);
+  // this is functionally equivalent to constructor initilization
+  state = { lat: null, errorMessage: '' };
 
-    this.state = { lat: null, errorMessage: null };
-
+  /* Before 'cleanup' and condensing things
+  componentDidMount() {
     window.navigator.geolocation.getCurrentPosition(
       (position) => {
         //once this callback happens, our state is updated
@@ -18,6 +18,18 @@ class App extends React.Component {
         this.setState({ errorMessage: err.message });
       }
     );
+  }
+*/
+  //after cleanup
+  componentDidMount() {
+    window.navigator.geolocation.getCurrentPosition(
+      position => this.setState({ lat: position.coords.latitude }),
+      err => this.setState({ errorMessage: err.message })
+    );
+  }
+
+  componentDidUpdate() {
+    console.log('component was just updated and re-rendered');
   }
 
   render() {
