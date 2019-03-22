@@ -38,9 +38,9 @@ class App extends React.Component {
       return <div>Error: {this.state.errorMessage}</div>
     } else if (!this.state.errorMessage && this.state.lat) {
       return <SeasonDisplay latitude={ this.state.lat }/>
-    } else {
-      return <Spinner />;
     }
+
+    return <Spinner  />;
   }
 }
 
